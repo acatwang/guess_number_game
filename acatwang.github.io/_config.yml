@@ -1,0 +1,19 @@
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           PRETTT
+
+# Setup
+title:               Let's try blog
+tagline:             '@acatwang'
+description:         'Personal blog'
+url:                 http://acatwang.github.io
+baseurl:             /
+paginate:            5
+
+# About/contact
+author:
+  name:              Alison Wang
+
+# Custom vars
+version:             1.0.0
