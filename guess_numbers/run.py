@@ -32,28 +32,40 @@ def evaluate(guess, ans_ints):
 	return [num_a, num_b]
 	
 
-def val_inputs(guess):
-	if len(guess) != 4:
-		print "You should guess a four-digit number."
-		return 'invalid inputs'
-	if guess.lower() == "e" :
-		print("Bye!")
-		return 'exit'
-	return 'cont'
+def is_valid_inputs(guess):
+	# TODO: more elegant way?
+
+	if not guess.isdigit():
+		print "Only numbers."
+		return False
+	if len(guess) > 4:
+		print "Too many numbers!"
+		return False
+	elif len(guess) < 4:
+		print "Too few numbers!"
+		return False
+	
+	elif len(guess) == 4 and len(set(guess)) < 4:
+		print "No duplicate value allowed"
+		return False
+	
+	return True
 
 def main():
 	ANS = set_up()
 	tries = 0
 
 	while True:
-		guess = str(raw_input("Guess 4 numbers (Exit with E) : "))
+		#TODO: time the game duration
+		guess = str(raw_input("Guess 4 numbers: "))
 
-		decision = val_inputs(guess)
-		if decision == 'invalid inputs':
-			continue
-		elif decision == 'exit':
+		if guess.lower() == 'e':
+			print ("Bye then!")
 			break
-		elif decision == 'cont':
+
+		if not is_valid_inputs(guess):
+			continue
+		else:
 			tries += 1
 			a,b = evaluate(guess, ANS)
 			if a == 4:
